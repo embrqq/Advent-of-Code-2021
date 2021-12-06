@@ -99,8 +99,6 @@ def tallyPoints(board: List[List[int]], card: List[List[bool]]) -> int:
             if not card[i][j]:
                 total += board[i][j]
 
-    print("Total: {}".format(total))
-
     return total
 
 
@@ -113,8 +111,6 @@ def playBingo(numbers: List[int], boards: List[List[List[int]]]) -> int:
         for i in range(0, len(boards)):
 
             if checkCard(boards[i], cards[i], number):
-
-                print("Board {} won with {}.".format(i+1, number))
 
                 return tallyPoints(boards[i], cards[i]) * number
 
@@ -129,31 +125,17 @@ def playSquidBingo(numbers: List[int], boards: List[List[List[int]]]) -> int:
 
         for i in range(0, len(boards)):
 
-            if finishedBoards[i]:
-                continue
-
-            elif checkCard(boards[i], cards[i], number):
+            if not finishedBoards[i] and checkCard(boards[i], cards[i], number):
 
                 finishedBoards[i] = True
                 wins = wins + 1
 
                 if wins == len(boards):
-                    print("Board {} won last with {}.".format(i+1, number))
-
                     return tallyPoints(boards[i], cards[i]) * number
-
-                else:
-                    print("Board {} finished with {}. Marking done.".format(i+1, number))
 
 data = getData()
 boards = data[1]
 numbers = data[0]
-
-
-for board in boards:
-    for row in board:
-        print(row)
-    print()
 
 print(playBingo(numbers, boards))
 print(playSquidBingo(numbers, boards))
