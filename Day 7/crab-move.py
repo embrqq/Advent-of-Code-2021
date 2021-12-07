@@ -14,7 +14,7 @@ def getFuel(data):
 
     minFuel = None
 
-    for i in range(0, max(data)):
+    for i in range(min(data), max(data)):
 
         fuel = 0
         for val in data:
@@ -29,7 +29,7 @@ def getFuel2(data):
 
     minFuel = None
 
-    for i in range(0, max(data)):
+    for i in range(min(data), max(data)):
 
         fuel = 0
 
