@@ -1,0 +1,47 @@
+def getData():
+
+    inp = open("input.txt", "r")
+
+    data = inp.readline().strip().split(",")
+
+    for i in range(0, len(data)):
+        data[i] = int(data[i])
+
+    return data
+
+
+def getFuel(data):
+
+    minFuel = None
+
+    for i in range(0, max(data)):
+
+        fuel = 0
+        for val in data:
+            fuel += abs(val - i)
+
+        if minFuel is None or fuel < minFuel:
+            minFuel = fuel
+
+    return minFuel
+
+def getFuel2(data):
+
+    minFuel = None
+
+    for i in range(0, max(data)):
+
+        fuel = 0
+
+        for val in data:
+            dist = abs(val - i)
+            fuel += (dist * (dist+1)) // 2
+
+        if minFuel is None or fuel < minFuel:
+            minFuel = fuel
+    
+    return minFuel
+
+data = getData()
+print(getFuel(data))
+print(getFuel2(data))
