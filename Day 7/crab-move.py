@@ -1,4 +1,5 @@
-def getData():
+from typing import List
+def getData() -> List[int]:
 
     inp = open("input.txt", "r")
 
@@ -10,7 +11,7 @@ def getData():
     return data
 
 
-def getFuel(data):
+def getFuel(data: List[int]) -> int:
 
     minFuel = None
 
@@ -25,7 +26,7 @@ def getFuel(data):
 
     return minFuel
 
-def getFuel2(data):
+def getFuel2(data: List[int]) -> int:
 
     minFuel = None
 
