@@ -44,7 +44,7 @@ def countSharedWires(mappings: List[str], segments: List[int], signal: str) -> i
         while i < 7:
             if segments[i] == 1 and char in mappings[i]:
                 wires += 1
-                i = 7
+                break
             i += 1
 
     return wires
