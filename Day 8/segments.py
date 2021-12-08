@@ -64,26 +64,20 @@ def matchWirings(line: str) -> int:
 
         length = len(signal)
 
-        # If it is a one
         if length  == 2:
             segments = one
-
-        # If it is a seven 
         elif length == 3:
             segments = seven
-        
-        # If it is a four
         elif length == 4:
             segments = four
-        
-        # If it is an eight
         elif length == 7:
             segments = eight
+        else:
+            continue
 
-        if segments is not None:
-            for i in range(0, 7):
-                if segments[i] == 1:
-                    mappings[i] = filterMapping(mappings[i], signal)
+        for i in range(0, 7):
+            if segments[i] == 1:
+                mappings[i] = filterMapping(mappings[i], signal)
 
     
     output = ""
@@ -100,23 +94,17 @@ def matchWirings(line: str) -> int:
         elif length == 7:
             output += "8"
         elif length == 6:
-
             if not (countSharedWires(mappings, one, signal) == 2):
                 output += "6"
-
             elif not (countSharedWires(mappings, four, signal) == 4):
                 output += "0"
-
             else:
                 output += "9"
-
         elif length == 5:
             if countSharedWires(mappings, one, signal) == 2:
                 output += "3"
-
             elif countSharedWires(mappings, four, signal) == 3:
                 output += "5"
-
             else:
                 output += "2"
     
