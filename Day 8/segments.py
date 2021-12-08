@@ -62,27 +62,21 @@ def matchWirings(line: str) -> int:
     return int(output)
 
 def countUniquesInOutput(data: List[str]) -> int:
-
     count = 0
-
     for line in data:
         output = line.split(" | ")[1]
         for signal in output.split():
 
             length = len(signal)
-
             if length == 2 or length == 4 or length == 3 or length == 7:
                 count += 1
 
     return count
 
 def sumOutputs(data: List[str]) -> int:
-
     total = 0
-
     for line in data:
         total += matchWirings(line)
-
     return total
 
 data = getData()
