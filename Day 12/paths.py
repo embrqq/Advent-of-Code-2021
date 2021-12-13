@@ -1,10 +1,8 @@
 from typing import List
-from enum import Enum
 
-class Size(Enum):
-    LARGE = 1
-    SMALL = 0
 
+LARGE = 1
+SMALL = 0
 fileName = "input.txt"
 
 def getCaves() -> List[str]:
@@ -31,9 +29,9 @@ def getGraph(caves: List[str]) -> List[List[int]]:
         graph.append(row)
 
         if caves[i].isupper():
-            graph[i][i] = Size.LARGE
+            graph[i][i] = LARGE
         else:
-            graph[i][i] = Size.SMALL
+            graph[i][i] = SMALL
 
     for edge in inp:
         edge = edge.strip().split("-")
@@ -50,7 +48,7 @@ def paths(graph: List[List[int]], caves: List[str], flags: List[bool], node: int
         return 1
     if flags[node]:
         return 0
-    if graph[node][node] == Size.SMALL:
+    if graph[node][node] == SMALL:
         flags[node] = True
 
     count = 0
@@ -76,7 +74,7 @@ def doublePaths(graph: List[List[int]], caves: List[str], flags: List[bool], nod
             doubled = True
             setDoubled = True
     
-    if graph[node][node] == Size.SMALL:
+    if graph[node][node] == SMALL:
         flags[node] = True
 
     count = 0
