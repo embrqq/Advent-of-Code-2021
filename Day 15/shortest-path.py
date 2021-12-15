@@ -55,14 +55,14 @@ def dijkstra(grid: List[List[int]]) -> int:
         for dr in [-1, 1]:
             row = node.row + dr
             col = node.col
-            if row < 0 or row >= len(grid):
+            if row < 0 or row >= len(grid) or flags[row][col]:
                 continue    
             pq.put(Node(row, col, dist + grid[row][col]))
 
         for dc in [-1, 1]:
             row = node.row
             col = node.col + dc
-            if col < 0 or col >= len(grid[0]):
+            if col < 0 or col >= len(grid[0]) or flags[row][col]:
                 continue
             pq.put(Node(row, col, dist + grid[row][col]))
 
