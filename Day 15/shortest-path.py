@@ -5,11 +5,10 @@ filename = "input.txt"
 
 class Node:
 
-    def __init__(self, row, col, dist, previous):
+    def __init__(self, row, col, dist):
         self.row = row
         self.col = col
         self.dist = dist
-        self.previous = previous
 
     def __lt__(self, other):
         return self.dist < other.dist
@@ -39,7 +38,7 @@ def dijkstra(grid: List[List[int]]) -> int:
         row = [False] * len(j)
         flags.append(row)
 
-    pq.put(Node(0, 0, 0, None))
+    pq.put(Node(0, 0, 0))
 
     while not pq.empty():
 
@@ -53,19 +52,19 @@ def dijkstra(grid: List[List[int]]) -> int:
         if node.row == len(grid)-1 and node.col == len(grid[0])-1:
             return dist
 
-        for dr in range(-1, 2):
+        for dr in [-1, 1]:
             row = node.row + dr
             col = node.col
             if row < 0 or row >= len(grid):
                 continue    
-            pq.put(Node(row, col, dist + grid[row][col], node))
+            pq.put(Node(row, col, dist + grid[row][col]))
 
-        for dc in range(-1, 2):
+        for dc in [-1, 1]:
             row = node.row
             col = node.col + dc
             if col < 0 or col >= len(grid[0]):
                 continue
-            pq.put(Node(row, col, dist + grid[row][col], node))
+            pq.put(Node(row, col, dist + grid[row][col]))
 
 
     return -1
