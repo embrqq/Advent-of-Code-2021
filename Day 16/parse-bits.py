@@ -1,5 +1,4 @@
 from typing import List
-from enum import Enum, auto
 
 filename = "input.txt"
 
