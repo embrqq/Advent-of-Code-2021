@@ -1,8 +1,9 @@
 from typing import List
+from typing import Tuple
 
 filename = "input.txt"
 
-def getData():
+def getData() -> List[str]:
 
     inp = open(filename, "r")
 
@@ -22,7 +23,7 @@ class Packet:
         self.i = 0
         self.lit = 0
 
-def parseLiteral(pack: Packet, data: str):
+def parseLiteral(pack: Packet, data: str) -> int:
     lit = ""
     read = 0
     notZero = True
@@ -38,7 +39,7 @@ def parseLiteral(pack: Packet, data: str):
     pack.lit = int(lit, 2)
     return read
 
-def parseOperator(pack: Packet, data: str):
+def parseOperator(pack: Packet, data: str) -> int:
 
     pack.i = int(data[0],2)
     read = 1
@@ -61,7 +62,7 @@ def parseOperator(pack: Packet, data: str):
 
     return read
 
-def parsePacket(data: str):
+def parsePacket(data: str) -> Tuple[Packet, int]:
 
     pack = Packet()
     pack.v = int(data[:3], 2)
@@ -74,13 +75,13 @@ def parsePacket(data: str):
 
     return pack, read
 
-def hexToBinaryString(hex: str):
+def hexToBinaryString(hex: str) -> str:
     binary = ""
     for char in hex:
         binary = binary + bin(int(char, 16))[2:].rjust(4, "0")   
     return binary
 
-def sumVersions(pack: Packet):
+def sumVersions(pack: Packet) -> int:
 
     verTotal = pack.v
     for child in pack.children:
@@ -117,7 +118,7 @@ def evaluatePacket(pack: Packet) -> int:
         return 1 if vals[0] == vals[1] else 0
         
 
-def printPackets(pack: Packet, depth: int):
+def printPackets(pack: Packet, depth: int) -> None:
 
     print("{}v={} t={} i={} lit={}".format("\t"*depth, pack.v, pack.t, pack.i, pack.lit))
     for child in pack.children:
